@@ -12,7 +12,7 @@ prompt = sprintf("Enter %d values in [] for Matrix A, each row separete with sem
 A_Matrix = input(prompt);
 
 if det(A_Matrix) == 0
-    msgbox("There isn't exactly one solution for the current problem" + newline + "Program will exit now");
+    msgbox("This Problem don't have exactly one solution");
     exit
 end
 
