@@ -1,14 +1,16 @@
 clc
 clear all
     
-vectorDimension = input('Enter Vector Diomnesion: ');
-matrixDimension = vectorDimension * vectorDimension;
 
-prompt = sprintf("Enter %d values in [] for vector b: ", vectorDimension);
+
+prompt = sprintf("Enter values in [] for vector b: ");
 bVector = input(prompt);
+[row,col] = size(bVector);
+vectorDimension = row * col; % number of elements * 1
 bVector = reshape(bVector,[vectorDimension,1]);
 
-prompt = sprintf("Enter %d values in [] for Matrix A, each row separete with semicolon (;): ", matrixDimension);
+matrixDimension = vectorDimension * vectorDimension;
+prompt = sprintf("Enter %d values in [] for square matrix A, each row separete with semicolon (;): ", matrixDimension);
 A_Matrix = input(prompt);
 
 if det(A_Matrix) == 0
