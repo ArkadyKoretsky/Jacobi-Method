@@ -1,19 +1,26 @@
 clc
 clear all
-    
-A_Matrix = input("Enter values in [] for square matrix A, each row separete with semicolon (;):" + newline);
+
+% File Input
+A_Matrix = readmatrix("matrix.xlsx");
+bVector = readmatrix("vector.xlsx");
 [row,col] = size(A_Matrix);
 
-prompt = sprintf("Enter %d values in [] for vector b: ", row);
-bVector = input(prompt);
-bVector = reshape(bVector,[row,1]);
+% % User Input
+% A_Matrix = input("Enter values in [] for square matrix A, each row separete with semicolon (;):" + newline);
+% [row,col] = size(A_Matrix);
+% prompt = sprintf("Enter %d values in [] for vector b: ", row);
+% bVector = input(prompt);
+% bVector = reshape(bVector,[row,1]);
 
 if det(A_Matrix) == 0
-    msgbox("This Problem don't have exactly one solution");
+    prompt = "This Problem don't have exactly one solution";
+    disp(prompt);
+    msgbox(prompt);
     return
 end
 
-if all((2*abs(diag(A_Matrix))) >= sum(abs(A_Matrix),2)) % check diagonally dominant matrix, if true perform the Jacobi method
+if all(abs(diag(A_Matrix)) > sum(abs(A_Matrix),2) - abs(diag(A_Matrix))) % check diagonally dominant matrix, if true perform the Jacobi method
     [xVector] = Jacobi_Method(A_Matrix, bVector);
     prompt = "This system converge with sufficient condition" + newline; 
 else
@@ -26,7 +33,9 @@ else
     [xVector] = Jacobi_Method(A_Matrix, bVector);
     prompt = "This system converge with necessary and sufficient condition" + newline;
   else
-     msgbox("This method won't converge for the current A matrix and b vector" + newline + "We suggest you to try the Gauss–Seidel method");
+     prompt = "This method won't converge for the current A matrix and b vector" + newline + "We suggest you to try the Gauss–Seidel method";
+     disp(prompt);
+     msgbox(prompt);
      return
   end
 end
@@ -37,4 +46,5 @@ for i=1:row-1
 end
 prompt = prompt + sprintf("X%d = %g", row, xVector(row));
 
+disp(prompt);
 msgbox(prompt);
