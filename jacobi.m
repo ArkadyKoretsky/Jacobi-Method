@@ -25,11 +25,12 @@ A_Diagonal = diag(A_Matrix);
 if all(abs(A_Diagonal) > sum(abs(A_Matrix),2) - abs(A_Diagonal)) % check diagonally dominant matrix, if true perform the Jacobi method
     [xVector] = Jacobi_Method(A_Matrix, bVector);
     prompt = "This current linear system converge with sufficient condition" + newline; 
-else
+else % check for the necessary and sufficient condition   
   D_Matrix = diag(A_Diagonal);
   L_Matrix = tril(A_Matrix) - D_Matrix;
   U_Matrix = triu(A_Matrix) - D_Matrix;
-  Bj_Matrix = -inv(D_Matrix) * (L_Matrix + U_Matrix); 
+  Bj_Matrix = -inv(D_Matrix) * (L_Matrix + U_Matrix);
+  %eigenValues = eig(Bj_Matrix);
   
   if all(abs(eig(Bj_Matrix)) < 1) % check if all the eigen values of Bj are inside the unit circle, if true perform the Jacobi method
     [xVector] = Jacobi_Method(A_Matrix, bVector);

@@ -1,7 +1,7 @@
 function [xVector] = Jacobi_Method(A_Matrix, bVector)
 
 [row,~] = size(A_Matrix);
-xVector = rand([row,1]);
+xVector = rand([row,1]); % Initial Value - X0
 epsilon = 1e-7; % epsilon = 10^-7
 A_Diagonal = diag(A_Matrix);
 
