@@ -6,14 +6,7 @@ A_Matrix = readmatrix("matrix.xlsx");
 bVector = readmatrix("vector.xlsx");
 [row,~] = size(A_Matrix);
 
-% % User Input
-% A_Matrix = input("Enter values in [] for square matrix A, each row separete with semicolon (;):" + newline);
-% [row,col] = size(A_Matrix);
-% prompt = sprintf("Enter %d values in [] for vector b: ", row);
-% bVector = input(prompt);
-% bVector = reshape(bVector,[row,1]);
-
-if det(A_Matrix) == 0
+if det(A_Matrix) == 0 % check if this linear system has exactly one solution
     prompt = "This current linear system doesn't have exactly one solution" + newline;
     disp(prompt);
     Display_Input(A_Matrix, bVector);
@@ -30,7 +23,6 @@ else % check for the necessary and sufficient condition
   L_Matrix = tril(A_Matrix) - D_Matrix;
   U_Matrix = triu(A_Matrix) - D_Matrix;
   Bj_Matrix = -inv(D_Matrix) * (L_Matrix + U_Matrix);
-  %eigenValues = eig(Bj_Matrix);
   
   if all(abs(eig(Bj_Matrix)) < 1) % check if all the eigen values of Bj are inside the unit circle, if true perform the Jacobi method
     [xVector] = Jacobi_Method(A_Matrix, bVector);

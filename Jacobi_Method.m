@@ -10,7 +10,7 @@ A_Diagonal = diag(A_Matrix);
 tempVector = xVector;
 xVector = (bVector - (A_Matrix * tempVector - A_Diagonal .* tempVector)) ./ A_Diagonal;
 
-while max(abs(xVector - tempVector)) >= epsilon
+while max(abs(xVector - tempVector)) >= epsilon % check infinity norm
    tempVector = xVector;
    xVector = (bVector - (A_Matrix * tempVector - A_Diagonal .* tempVector)) ./ A_Diagonal; 
 end
