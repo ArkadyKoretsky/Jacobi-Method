@@ -28,7 +28,7 @@ else % check for the necessary and sufficient condition
     [xVector] = Jacobi_Method(A_Matrix, bVector);
     prompt = "This current linear system converge with necessary and sufficient condition" + newline;
   else
-     prompt = "This method won't converge for the current linear system" + newline + "We suggest you to try the Gauss–Seidel method" + newline;
+     prompt = "This method won't converge for the current linear system" + newline + "We suggest you to try non-iterative method" + newline;
      disp(prompt);
      Display_Input(A_Matrix, bVector);
      msgbox(prompt);
